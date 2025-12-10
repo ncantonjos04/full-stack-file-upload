@@ -55,8 +55,6 @@ public class CustomerJDBCDataAccessService implements CustomerDao {
                 customer.getAge(),
                 customer.getGender().name()
         );
-
-        System.out.println("insertCustomer result " + result);
     }
 
     @Override
@@ -134,14 +132,15 @@ public class CustomerJDBCDataAccessService implements CustomerDao {
                 .findFirst();
     }
 
-    @Override
-    public void updateCustomerProfileImageId(String profileImageId,
-                                             Integer customerId) {
-        var sql = """
-                UPDATE customer
-                SET profile_image_id = ?
-                WHERE id = ?
-                """;
-        jdbcTemplate.update(sql, profileImageId, customerId);
-    }
+@Override
+public void updateCustomerProfileImageId(String profileImageId, Integer customerId) {
+    String sql = """
+            UPDATE customer
+            SET profile_image_id = ?
+            WHERE id = ?
+            """;
+
+    jdbcTemplate.update(sql, profileImageId, customerId);
+}
+
 }

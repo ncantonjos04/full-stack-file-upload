@@ -1,32 +1,14 @@
-server:
-  port: 8080
-  error:
-    include-message: always
-
-cors:
-  allowed-origins: "*"
-  allowed-methods: "*"
-  allowed-headers: "*"
-  exposed-headers: "*"
-
 aws:
-  region: eu-west-1
+  region: us-east-1
   s3:
-    mock: true
     buckets:
-      customer: fs-amigoscode-customer-test
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "health,info"
+      customer: fs-trinadone-customer-test
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5332/customer
+    url: jdbc:postgresql://localhost:5432/customer
     username: amigoscode
-    password: password
+    password: NewYork2004!
   jpa:
     hibernate:
       ddl-auto: validate
@@ -37,9 +19,11 @@ spring:
     show-sql: true
   main:
     web-application-type: servlet
-  servlet:
-    multipart:
-      max-file-size: 10MB
-      max-request-size: 10MB
-  codec:
-    max-in-memory-size: 10MB
+
+cors:
+  allowed-origins: "http://localhost:3000,http://localhost:4200"
+  allowed-methods: "GET,POST,PUT,DELETE,OPTIONS"
+  allowed-headers: "*"
+  exposed-headers: "*"
+
+
